@@ -27,5 +27,3 @@ the tag list for the runner
 ###### `gitlab_runner_description`
 
 the description for the  runner
-
-
