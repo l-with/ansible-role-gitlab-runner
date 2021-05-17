@@ -1,0 +1,19 @@
+---
+
+dependencies:
+  - name: docker
+    src: git@gitlab.with.de:ansible/ansible-role-docker.git
+    scm: git
+    version: 0.0.1
+
+galaxy_info:
+  role_name: gitlab-runner
+  description: install gitlab-runner
+  author: l-with
+  platforms:
+  - name: Ubuntu
+    versions: focal
+  - name: EL
+    versions: 8
+
+...

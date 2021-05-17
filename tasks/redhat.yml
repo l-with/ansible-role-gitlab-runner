@@ -1,0 +1,15 @@
+---
+
+- name: Ensure gitlab-runner package installation via script
+  ansible.builtin.shell: curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh" | sudo bash && touch ansible-shell-done-gitlab-runner-script.rpm.sh
+  args:
+    creates: ansible-shell-done-gitlab-runner-script.rpm.sh
+    warn: false
+
+- name: Ensure gitlab-runner is installed
+  ansible.builtin.dnf:
+    name: gitlab-runner
+  environment:
+    GITLAB_RUNNER_DISABLE_SKEL: 'true'
+
+...

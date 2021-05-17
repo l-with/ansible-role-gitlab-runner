@@ -1,0 +1,7 @@
+---
+
+gitlab_runner_executor: docker
+gitlab_runner_docker_image: gitlab/gitlab-runner:alpine-bleeding
+gitlab_runner_tag_list: []
+
+...
