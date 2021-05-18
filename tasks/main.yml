@@ -3,27 +3,29 @@
 - name: Include os family specific install tasks
   include_tasks: "{{ ansible_os_family | lower }}.yml"
 
-- name: Print register/unregister gitlab-runner command
-  ansible.builtin.debug:
-    msg: gitlab-runner {{ gitlab_runner_command }}
-      --non-interactive
-      --url {{ gitlab_runner_gitlab_url }}
-      --description "{{ gitlab_runner_description }}"
-      --executor {{ gitlab_runner_executor }}
-      --docker-image {{ gitlab_runner_docker_image }}
-      --registration-token {{ gitlab_runner_registration_token }}
-
-- name: Ensure register/unregister gitlab-runner
-  ansible.builtin.shell: gitlab-runner {{ gitlab_runner_command }}
+- name: Ensure register gitlab-runner
+  ansible.builtin.shell: gitlab-runner register
       --non-interactive 
       --url {{ gitlab_runner_gitlab_url }} 
       --description "{{ gitlab_runner_description }}"
       --executor {{ gitlab_runner_executor }}
       --docker-image {{ gitlab_runner_docker_image }}
       --registration-token {{ gitlab_runner_registration_token }} 
-    && touch ansible-shell-done-gitlab-runner-{{ gitlab_runner_command }}-{{ gitlab_runner_executor }}
+    && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
+    && rm ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
   args:
-    creates: ansible-shell-done-gitlab-runner-{{ gitlab_runner_command }}-{{ gitlab_runner_executor }}
+    creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
     warn: false
+  when: not gitlab_runner_unregister
+
+- name: Ensure unregister gitlab-runner
+  ansible.builtin.shell: gitlab-runner unregister
+    --name "{{ gitlab_runner_description }}"
+    && touch ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
+    && rm ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
+  args:
+    creates: ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
+    warn: false
+  when: gitlab_runner_unregister
 
 ...

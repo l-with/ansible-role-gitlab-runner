@@ -3,9 +3,9 @@ Installs and registers a GitLab Runner manually (s. https://docs.gitlab.com/runn
 
 ## Role Variables
 
-###### `gitlab_runner_command`: `register`
+###### `gitlab_runner_unregister`: `no`
 
-the command to execute with `gitlab-runner` (`register`/`unregister`)
+if the gitlab-runner should be unregistered instead of registered
 
 ###### `gitlab_runner_gitlab_url`
 
