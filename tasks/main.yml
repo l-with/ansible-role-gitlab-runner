@@ -4,7 +4,7 @@
   include_tasks: "{{ ansible_os_family | lower }}.yml"
 
 - name: Ensure register/unregister gitlab-runner
-  ansible.builtin.shell: gitlab-runner {{ gitlab_runner_comand }}
+  ansible.builtin.shell: set -x && gitlab-runner {{ gitlab_runner_comand }}
       --non-interactive 
       --url {{ gitlab_runner_gitlab_url }} 
       --description "{{ gitlab_runner_description }}"
