@@ -3,17 +3,17 @@
 - name: Include os family specific install tasks
   include_tasks: "{{ ansible_os_family | lower }}.yml"
 
-- name: Ensure register gitlab-runner
-  ansible.builtin.shell: gitlab-runner register 
+- name: Ensure register/unregister gitlab-runner
+  ansible.builtin.shell: gitlab-runner {{ gitlab_runner_comand }}
       --non-interactive 
       --url {{ gitlab_runner_gitlab_url }} 
       --description "{{ gitlab_runner_description }}"
       --executor {{ gitlab_runner_executor }}
       --docker-image {{ gitlab_runner_docker_image }}
       --registration-token {{ gitlab_runner_registration_token }} 
-    && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
+    && touch ansible-shell-done-gitlab-runner-{{ gitlab_runner_comand }}-{{ gitlab_runner_executor }}
   args:
-    creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
+    creates: ansible-shell-done-gitlab-runner-{{ gitlab_runner_comand }}-{{ gitlab_runner_executor }}
     warn: false
 
 ...
