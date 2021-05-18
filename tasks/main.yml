@@ -5,7 +5,7 @@
 
 - name: Print register/unregister gitlab-runner command
   ansible.builtin.debug:
-    msg: gitlab-runner {{ gitlab_runner_comand }}
+    msg: gitlab-runner {{ gitlab_runner_command }}
       --non-interactive
       --url {{ gitlab_runner_gitlab_url }}
       --description "{{ gitlab_runner_description }}"
@@ -14,7 +14,7 @@
       --registration-token {{ gitlab_runner_registration_token }}
 
 - name: Ensure register/unregister gitlab-runner
-  ansible.builtin.shell: gitlab-runner {{ gitlab_runner_comand }}
+  ansible.builtin.shell: gitlab-runner {{ gitlab_runner_command }}
       --non-interactive 
       --url {{ gitlab_runner_gitlab_url }} 
       --description "{{ gitlab_runner_description }}"
