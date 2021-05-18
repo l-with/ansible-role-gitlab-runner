@@ -12,7 +12,7 @@
       --docker-image {{ gitlab_runner_docker_image }}
       --registration-token {{ gitlab_runner_registration_token }} 
     && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
-    && rm ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
+    && rm -f ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
   args:
     creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
     warn: false
@@ -22,7 +22,7 @@
   ansible.builtin.shell: gitlab-runner unregister
     --name "{{ gitlab_runner_description }}"
     && touch ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
-    && rm ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
+    && rm -f ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
   args:
     creates: ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
     warn: false
