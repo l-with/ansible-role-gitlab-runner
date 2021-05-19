@@ -1,7 +1,10 @@
 ---
 
-- name: Include os family specific install tasks
-  include_tasks: "{{ ansible_os_family | lower }}.yml"
+- name: Ensure install gitlab-runner
+  ansible.builtin.package:
+    name: gitlab-runner
+  environment:
+    GITLAB_RUNNER_DISABLE_SKEL: 'true'
 
 - name: Ensure register gitlab-runner
   ansible.builtin.shell: gitlab-runner register
