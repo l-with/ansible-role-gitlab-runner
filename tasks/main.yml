@@ -1,7 +1,7 @@
 ---
 
 - name: Include os family specific install tasks
-  include_tasks: "{{ ansible_os_family | lower }}.yml"
+  ansible.builtin.import_tasks: "{{ ansible_os_family | lower }}.yml"
 
 - name: Ensure register gitlab-runner
   ansible.builtin.shell: gitlab-runner register
