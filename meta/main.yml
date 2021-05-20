@@ -4,7 +4,7 @@ dependencies:
   - name: docker
     src: git@gitlab.with.de:ansible/ansible-role-docker.git
     scm: git
-    version: 0.0.2
+    version: 0.0.3
 
 galaxy_info:
   role_name: gitlab_runner
