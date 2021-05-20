@@ -9,8 +9,9 @@ dependencies:
 galaxy_info:
   role_name: gitlab_runner
   description: install gitlab-runner
-  author: l-with
+  author: l_with
   license: MIT
+  license_file: LICENSE
   min_ansible_version: 2.9
   platforms:
   - name: Ubuntu
