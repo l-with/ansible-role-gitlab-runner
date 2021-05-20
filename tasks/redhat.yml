@@ -1,0 +1,9 @@
+---
+
+- name: Ensure install gitlab-runner
+  ansible.builtin.name:
+    name: gitlab-runner_amd64.rpm
+  environment:
+    GITLAB_RUNNER_DISABLE_SKEL: 'true'
+
+...
