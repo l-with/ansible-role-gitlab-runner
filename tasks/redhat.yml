@@ -8,6 +8,7 @@
 - name: Ensure install gitlab-runner
   ansible.builtin.dnf:
     name: gitlab-runner_amd64.rpm
+    disable_gpg_check: yes
   environment:
     GITLAB_RUNNER_DISABLE_SKEL: 'true'
 
