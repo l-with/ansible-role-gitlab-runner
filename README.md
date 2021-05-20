@@ -38,8 +38,8 @@ if docker prune should be scheduled with cron
 
 #### `gitlab_runner_docker_prune_hour`: `5`
 
-the schedule hour for dorcker prune
+the schedule hour for docker prune
 
 #### `gitlab_runner_docker_prune_minute`: `30`
 
-the schedule minute for dorcker prune
+the schedule minute for docker prune
