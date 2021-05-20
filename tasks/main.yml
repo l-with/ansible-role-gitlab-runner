@@ -21,6 +21,17 @@
     warn: false
   when: not gitlab_runner_unregister
 
+- name: Ensure scheduled docker prune -f
+  ansible.builtin.cron:
+    cron_file: "ansible_docker_prune_-f"
+    user: root
+    name: "ansible docker prune -f"
+    job: docker prune -f
+    hour: "{{ gitlab_runner_docker_prune_cron_hour }}"
+    minute: "{{ gitlab_runner_docker_prune_cron_minute }}"
+  when: gitlab_runner_docker_prune_cron and not gitlab_runner_unregister
+
+- name: Ensure 
 - name: Ensure unregister gitlab-runner
   ansible.builtin.shell: gitlab-runner unregister
     --name "{{ gitlab_runner_description }}"

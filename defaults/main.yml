@@ -4,5 +4,8 @@ gitlab_runner_executor: docker
 gitlab_runner_docker_image: gitlab/gitlab-runner:alpine-bleeding
 gitlab_runner_tag_list: []
 gitlab_runner_unregister: no
+gitlab_runner_docker_prune_cron: yes
+gitlab_runner_docker_prune_cron_hour: 5
+gitlab_runner_docker_prune_cron_minute: 30
 
 ...
