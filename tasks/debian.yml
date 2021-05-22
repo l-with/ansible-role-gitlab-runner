@@ -1,8 +1,14 @@
 ---
 
+- name: Ensure gitlab-runner deb
+  ansible.builtin.copy:
+    src: gitlab-runner_amd64.deb
+    dest: gitlab-runner_amd64.deb
+
 - name: Ensure install gitlab-runner
   ansible.builtin.apt:
-    name: gitlab-runner
+    name: gitlab-runner_amd64.deb
+    allow_unauthenticated: yes
   environment:
     GITLAB_RUNNER_DISABLE_SKEL: 'true'
 

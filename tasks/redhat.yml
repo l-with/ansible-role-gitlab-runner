@@ -1,6 +1,6 @@
 ---
 
-- name: Ensure rpm
+- name: Ensure gitlab-runner rpm
   ansible.builtin.copy:
     src: gitlab-runner_amd64.rpm
     dest: gitlab-runner_amd64.rpm
