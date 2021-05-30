@@ -36,6 +36,7 @@
   args:
     creates: ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
     warn: false
+  failed_when: False
   when: gitlab_runner_unregister
 
 ...
