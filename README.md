@@ -47,3 +47,39 @@ the schedule hour for docker prune
 ### `gitlab_runner_docker_prune_minute`: `30`
 
 the schedule minute for docker prune
+
+### `gitlab_runner_s3_cache_minio`: `no`
+
+if s3 cache via [minio](https://min.io/) should be provided
+
+### `gitlab_runner_s3_cache_name`: `runner`
+
+the name of the s3 bucket shared by the GitLab runners
+
+### `gitlab_runner_minio_address`
+
+the url of minio for the GitLab runners
+
+### `gitlab_runner_minio_root_user`
+
+the user name of the minio root user
+
+### `gitlab_runner_minio_root_password`
+
+the password of the minio root user
+
+### `gitlab_runner_s3_cache_minio_args`
+
+default is
+
+```yml
+  - --cache-shared
+  - --cache-type s3
+  - --cache-s3-server-address {{ gitlab_runner_minio_address }}
+  - --cache-s3-access-key {{ gitlab_runner_minio_root_user }}
+  - --cache-s3-secret-key {{ gitlab_runner_minio_root_password }}
+  - --cache-s3-bucket-name {{ gitlab_runner_s3_cache_name }}
+  - --cache-s3-insecure
+```
+
+the arguments used for registering the GitLab runner if gitlab_runner_autoscaling_s3_cache_minio is yes

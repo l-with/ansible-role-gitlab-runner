@@ -8,4 +8,14 @@ gitlab_runner_docker_prune_cron: yes
 gitlab_runner_docker_prune_cron_hour: 5
 gitlab_runner_docker_prune_cron_minute: 30
 
+gitlab_runner_autoscaling_s3_cache_minio: no
+gitlab_runner_s3_cache_minio_args:
+  - --cache-shared
+  - --cache-type s3
+  - --cache-s3-server-address {{ gitlab_runner_minio_address }}
+  - --cache-s3-access-key {{ gitlab_runner_minio_root_user }}
+  - --cache-s3-secret-key {{ gitlab_runner_minio_root_password }}
+  - --cache-s3-bucket-name {{ gitlab_runner_s3_cache_name }}
+  - --cache-s3-insecure
+
 ...
