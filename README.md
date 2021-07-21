@@ -28,13 +28,18 @@ the runner executor
 
 the default image for the docker runner executor
 
-### `gitlab_runner_tag_list`: []
+### `gitlab_runner_tag_list`: ""
 
 the tag list for the runner
 
 ### `gitlab_runner_description`
 
 the description for the  runner
+
+
+### `gitlab_runner_locked`: `"true"`
+
+the parameter for `--locked`
 
 ### `gitlab_runner_docker_prune_cron`: `yes`
 

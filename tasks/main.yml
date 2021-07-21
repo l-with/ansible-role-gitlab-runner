@@ -10,7 +10,9 @@
       --description "{{ gitlab_runner_description }}"
       --executor {{ gitlab_runner_executor }}
       --docker-image {{ gitlab_runner_docker_image }}
-      --registration-token {{ gitlab_runner_registration_token }} 
+      --registration-token {{ gitlab_runner_registration_token }}
+      --locked="{{ gitlab_runner_locked }}"
+      --tag-list="{{ gitlab_runner_tag_list }}"
       {{ (gitlab_runner_s3_cache_minio_args | join(' ')) if gitlab_runner_autoscaling_s3_cache_minio else '' }}
     && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
     && rm -f ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
