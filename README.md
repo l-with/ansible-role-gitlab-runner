@@ -87,4 +87,4 @@ default is
   - --cache-s3-insecure
 ```
 
-the arguments used for registering the GitLab runner if gitlab_runner_autoscaling_s3_cache_minio is yes
+the arguments used for registering the GitLab runner if `gitlab_runner_s3_cache_minio` is yes

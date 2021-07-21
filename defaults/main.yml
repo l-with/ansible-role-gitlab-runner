@@ -8,7 +8,7 @@ gitlab_runner_docker_prune_cron: yes
 gitlab_runner_docker_prune_cron_hour: 5
 gitlab_runner_docker_prune_cron_minute: 30
 gitlab_runner_locked: "true"
-gitlab_runner_autoscaling_s3_cache_minio: no
+gitlab_runner_s3_cache_minio: no
 gitlab_runner_s3_cache_name: runner
 gitlab_runner_s3_cache_minio_args:
   - --cache-shared
