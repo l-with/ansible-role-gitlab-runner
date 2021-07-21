@@ -1,6 +1,10 @@
 # Ansible Role GitLab Runner
 Installs and registers a GitLab Runner manually (s. https://docs.gitlab.com/runner/install/linux-manually.html)
 
+## Dependencies
+
+This role needs docker to be installed.
+
 ## Role Variables
 
 ### `gitlab_runner_unregister`: `no`
