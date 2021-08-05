@@ -1,7 +1,24 @@
 ---
 
-- name: Include os family specific install tasks
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+- name: Ensure GitLab runner repository
+  ansible.builtin.get_url:
+    url:  https://packages.gitlab.com/install/repositories/runner/gitlab-runner/config_file.list?os={{ ansible_distribution }}&dist={{ ansible_distribution_release }}
+    dest: /etc/apt/sources.list.d/runner_gitlab-runner.list
+    mode:  +x,go-w
+
+- name: Ensure GitLab Runner repository GPG key
+  ansible.builtin.apt_key:
+    url: https://packages.gitlab.com/runner/gitlab-runner/gpgkey
+
+- name: Ensure apt cache update
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Ensure install Gitlab runner     
+  ansible.builtin.apt:
+    name:         gitlab-runner
+  environment:
+    GITLAB_RUNNER_DISABLE_SKEL: 'true'
 
 - name: Ensure register gitlab-runner
   ansible.builtin.shell: gitlab-runner register
@@ -26,7 +43,7 @@
     cron_file: "ansible_docker_prune_-f"
     user: root
     name: "ansible docker prune -f"
-    job: docker prune -f
+    job: docker image prune -f
     hour: "{{ gitlab_runner_docker_prune_cron_hour }}"
     minute: "{{ gitlab_runner_docker_prune_cron_minute }}"
   when: gitlab_runner_docker_prune_cron and not gitlab_runner_unregister
