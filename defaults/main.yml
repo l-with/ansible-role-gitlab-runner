@@ -19,4 +19,9 @@ gitlab_runner_s3_cache_minio_args:
   - --cache-s3-bucket-name {{ gitlab_runner_s3_cache_name }}
   - --cache-s3-insecure
 
+# to avoid undefined errors
+gitlab_runner_minio_address: "{{ gitlab_runner_minio_address | default('') }}"
+gitlab_runner_minio_root_user: "{{ gitlab_runner_minio_root_user | default('') }}"
+gitlab_runner_minio_root_password: "{{ gitlab_runner_minio_root_password | default('') }}"
+
 ...

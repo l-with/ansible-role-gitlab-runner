@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: defaults/main.yml
+  allowed_patterns:
+  - gitlab_runner_minio_root_password:\ "{{ gitlab_runner_minio_root_password | default('') }}"
