@@ -13,15 +13,10 @@ gitlab_runner_s3_cache_name: runner
 gitlab_runner_s3_cache_minio_args:
   - --cache-shared
   - --cache-type s3
-  - --cache-s3-server-address {{ gitlab_runner_minio_address }}
-  - --cache-s3-access-key {{ gitlab_runner_minio_root_user }}
-  - --cache-s3-secret-key {{ gitlab_runner_minio_root_password }}
+  - --cache-s3-server-address {{ gitlab_runner_minio_address | default('') }}
+  - --cache-s3-access-key {{ gitlab_runner_minio_root_user | default('') }}
+  - --cache-s3-secret-key {{ gitlab_runner_minio_root_password | default('') }}
   - --cache-s3-bucket-name {{ gitlab_runner_s3_cache_name }}
   - --cache-s3-insecure
-
-# to avoid undefined errors
-gitlab_runner_minio_address: "{{ gitlab_runner_minio_address | default('') }}"
-gitlab_runner_minio_root_user: "{{ gitlab_runner_minio_root_user | default('') }}"
-gitlab_runner_minio_root_password: "{{ gitlab_runner_minio_root_password | default('') }}"
 
 ...
