@@ -28,6 +28,10 @@ the runner executor
 
 the default image for the docker runner executor
 
+### `gitlab_runner_docker_pull_policy`: `if-not-present`
+
+the docker-pull-policy
+
 ### `gitlab_runner_tag_list`: ""
 
 the tag list for the runner
