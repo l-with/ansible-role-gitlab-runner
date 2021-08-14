@@ -60,4 +60,13 @@
   failed_when: False
   when: gitlab_runner_unregister
 
+- name: Ensure gitlab-runner docker container finished
+  ansible.builtin.command: 
+    cmd: docker ps --filter name=runner
+  register: _result 
+  until: _result.stdout.find("runner") == -1
+  retries: 20
+  delay: 20
+  when: gitlab_runner_unregister 
+
 ...
