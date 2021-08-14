@@ -14,7 +14,7 @@ if the gitlab-runner should be unregistered instead of registered
 
 ### `gitlab_runner_gitlab_url`
 
-the URL of the GitLab instance 
+the URL of the GitLab instance
 
 ### `gitlab_runner_registration_token`
 
