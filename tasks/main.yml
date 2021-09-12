@@ -1,72 +1,11 @@
 ---
 
-- name: Ensure GitLab runner repository
-  ansible.builtin.get_url:
-    url:  https://packages.gitlab.com/install/repositories/runner/gitlab-runner/config_file.list?os={{ ansible_distribution }}&dist={{ ansible_distribution_release }}
-    dest: /etc/apt/sources.list.d/runner_gitlab-runner.list
-    mode:  +x,go-w
-
-- name: Ensure GitLab Runner repository GPG key
-  ansible.builtin.apt_key:
-    url: https://packages.gitlab.com/runner/gitlab-runner/gpgkey
-
-- name: Ensure apt cache update
-  ansible.builtin.apt:
-    update_cache: yes
-
-- name: Ensure install Gitlab runner     
-  ansible.builtin.apt:
-    name:         gitlab-runner
-  environment:
-    GITLAB_RUNNER_DISABLE_SKEL: 'true'
-
-- name: Ensure register gitlab-runner
-  ansible.builtin.shell: gitlab-runner register
-      --non-interactive 
-      --url {{ gitlab_runner_gitlab_url }} 
-      --description "{{ gitlab_runner_description }}"
-      --executor {{ gitlab_runner_executor }}
-      --docker-image {{ gitlab_runner_docker_image }}
-      --docker-pull-policy {{ gitlab_runner_docker_pull_policy }}
-      --registration-token {{ gitlab_runner_registration_token }}
-      --locked="{{ gitlab_runner_locked }}"
-      --tag-list="{{ gitlab_runner_tag_list }}"
-      {{ (gitlab_runner_s3_cache_minio_args | join(' ')) if gitlab_runner_s3_cache_minio else '' }}
-    && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
-    && rm -f ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
-  args:
-    creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
-    warn: false
+- name: Ensure GitLab runner install and register
+  ansible.builtin.include_tasks: install_register.yml
   when: not gitlab_runner_unregister
 
-- name: Ensure scheduled docker prune -f
-  ansible.builtin.cron:
-    cron_file: "ansible_docker_prune_-f"
-    user: root
-    name: "ansible docker prune -f"
-    job: docker image prune -f
-    hour: "{{ gitlab_runner_docker_prune_cron_hour }}"
-    minute: "{{ gitlab_runner_docker_prune_cron_minute }}"
-  when: gitlab_runner_docker_prune_cron and not gitlab_runner_unregister
-
-- name: Ensure unregister gitlab-runner
-  ansible.builtin.shell: gitlab-runner unregister
-    --name "{{ gitlab_runner_description }}"
-    && touch ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
-    && rm -f ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
-  args:
-    creates: ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
-    warn: false
-  failed_when: False
+- name: Ensure GitLab runner unregister
+  ansible.builtin.include_tasks: unregister.yml
   when: gitlab_runner_unregister
-
-- name: Ensure gitlab-runner docker container finished
-  ansible.builtin.command: 
-    cmd: docker ps --filter name=runner
-  register: _result 
-  until: _result.stdout.find("runner") == -1
-  retries: 20
-  delay: 20
-  when: gitlab_runner_unregister 
 
 ...

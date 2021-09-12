@@ -12,6 +12,16 @@ This role needs docker to be installed.
 
 if the gitlab-runner should be unregistered instead of registered
 
+### `gitlab_runner_description`
+
+the description for the  runner
+
+### `gitlab_runner_executor`: `docker`
+
+the runner executor
+
+## Role Variables only used, when not `gitlab_runner_unregister` 
+
 ### `gitlab_runner_gitlab_url`
 
 the URL of the GitLab instance
@@ -19,10 +29,6 @@ the URL of the GitLab instance
 ### `gitlab_runner_registration_token`
 
 the token to register the runner
-
-### `gitlab_runner_executor`: `docker`
-
-the runner executor
 
 ### `gitlab_runner_docker_image`: `gitlab/gitlab-runner:alpine-bleeding`
 
@@ -35,11 +41,6 @@ the docker-pull-policy
 ### `gitlab_runner_tag_list`: ""
 
 the tag list for the runner
-
-### `gitlab_runner_description`
-
-the description for the  runner
-
 
 ### `gitlab_runner_locked`: `"true"`
 
