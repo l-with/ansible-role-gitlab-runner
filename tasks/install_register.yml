@@ -1,4 +1,4 @@
-...
+---
 
 - name: Ensure GitLab runner repository
   ansible.builtin.get_url:
@@ -48,5 +48,4 @@
     minute: "{{ gitlab_runner_docker_prune_cron_minute }}"
   when: gitlab_runner_docker_prune_cron
 
-
----
+...
