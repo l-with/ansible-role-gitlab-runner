@@ -23,7 +23,6 @@
 - name: Ensure register gitlab-runner
   ansible.builtin.shell: gitlab-runner register
       --non-interactive
-      --run-untagged  if gitlab_runner_ruin
       --url {{ gitlab_runner_gitlab_url }} 
       --description "{{ gitlab_runner_description }}"
       --executor {{ gitlab_runner_executor }}
