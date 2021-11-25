@@ -42,6 +42,10 @@ the docker-pull-policy
 
 the tag list for the runner
 
+### `gitlab_runner_run_untagged': `yes`
+
+if the runner should be registered with `--run_untagged`
+
 ### `gitlab_runner_locked`: `"true"`
 
 the parameter for `--locked`

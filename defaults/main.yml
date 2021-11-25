@@ -5,6 +5,7 @@ gitlab_runner_executor:           docker
 gitlab_runner_docker_image:       ubuntu:20.04
 gitlab_runner_docker_pull_policy: if-not-present
 gitlab_runner_tag_list:           ""
+gitlab_runner_run_untagged:       yes
 gitlab_runner_locked:             "true"
 
 gitlab_runner_docker_prune_cron:        yes
