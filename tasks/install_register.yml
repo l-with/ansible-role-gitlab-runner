@@ -39,12 +39,12 @@
     creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
     warn: false
 
-- name: Ensure scheduled docker image prune -f
+- name: Ensure scheduled docker image prune -af
   ansible.builtin.cron:
-    cron_file: "ansible_docker_image_prune_-f"
+    cron_file: "ansible_docker_image_prune_-af"
     user: root
-    name: "ansible docker image prune -f"
-    job: docker image prune -f
+    name: "ansible docker image prune -af"
+    job: docker image prune -af
     hour: "{{ gitlab_runner_docker_prune_cron_hour }}"
     minute: "{{ gitlab_runner_docker_prune_cron_minute }}"
   when: gitlab_runner_docker_prune_cron
