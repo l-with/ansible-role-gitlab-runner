@@ -1,13 +1,12 @@
 ---
 
 - name: Ensure unregister gitlab-runner
-  ansible.builtin.shell: gitlab-runner unregister
-    --name "{{ gitlab_runner_description }}"
-    && touch ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
-    && rm -f ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
-  args:
+  ansible.builtin.shell: 
+    cmd: gitlab-runner unregister
+      --name "{{ gitlab_runner_description }}"
+      && touch ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
+      && rm -f ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
     creates: ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
-    warn: false
   failed_when: False
 
 - name: Ensure gitlab-runner docker container finished
