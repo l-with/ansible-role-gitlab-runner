@@ -16,7 +16,7 @@ This role needs docker to be installed.
 | basic | gitlab_runner_executor | `docker` | the runner executor |
 <!-- markdownlint-enable MD033 -->
 
-## Role Variables only used, when not `gitlab_runner_unregister` 
+## Role Variables only used, when not `gitlab_runner_unregister`
 
 <!-- markdownlint-disable MD033 -->
 | group | variable | default | description |
