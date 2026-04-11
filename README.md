@@ -6,6 +6,14 @@ Installs and registers a GitLab Runner manually (s. https://docs.gitlab.com/runn
 
 This role needs docker to be installed.
 
+## Specials
+
+The file `files/script.deb.sh` is downloaded by
+```bash
+curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" -o script.deb.sh
+```
+and part of the role for security reasons.
+
 ## Role Variables
 
 <!-- markdownlint-disable MD033 -->
@@ -22,7 +30,7 @@ This role needs docker to be installed.
 | group | variable | default | description |
 | --- | --- | ---| --- |
 | gitlab | gitlab_runner_gitlab_url | | the URL of the GitLab instance |
-| gitlab | gitlab_runner_registration_token | | the token to register the runner |
+| gitlab | gitlab_runner_token | | the token to register the runner |
 | runner | gitlab_runner_docker_image | `gitlab/gitlab-runner:alpine-bleeding` | the default image for the docker runner executor |
 | runner | gitlab_runner_docker_pull_policy | `if-not-present` | the docker-pull-policy |
 | runner | gitlab_runner_tag_list | `""` | the tag list for the runner |
