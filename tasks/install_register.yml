@@ -20,6 +20,7 @@
   ansible.builtin.shell: 
     cmd: gitlab-runner register
         --non-interactive
+        --name {{ gitlab_runner_name }}
         --url {{ gitlab_runner_gitlab_url }} 
         --executor {{ gitlab_runner_executor }}
         --docker-image {{ gitlab_runner_docker_image }}
