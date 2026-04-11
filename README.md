@@ -6,6 +6,14 @@ Installs and registers a GitLab Runner manually (s. https://docs.gitlab.com/runn
 
 This role needs docker to be installed.
 
+## Specials
+
+The file `files/script.deb.sh` is downloaded by
+```bash
+curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" -o script.deb.sh
+```
+and part of the role for security reasons.
+
 ## Role Variables
 
 <!-- markdownlint-disable MD033 -->
