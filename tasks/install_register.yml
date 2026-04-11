@@ -12,7 +12,7 @@
 
 - name: Ensure install Gitlab runner     
   ansible.builtin.apt:
-    name:         gitlab-runner
+    name: gitlab-runner
   environment:
     GITLAB_RUNNER_DISABLE_SKEL: 'true'
 
