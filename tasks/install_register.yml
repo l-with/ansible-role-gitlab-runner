@@ -25,20 +25,19 @@ sudo gitlab-runner register \
   --description "docker-runner"
 
 - name: Ensure register gitlab-runner
-  ansible.builtin.shell: 
-    cmd: gitlab-runner register
-        --non-interactive
-        --url {{ gitlab_runner_gitlab_url }} 
-        --executor {{ gitlab_runner_executor }}
-        --docker-image {{ gitlab_runner_docker_image }}
-        --docker-pull-policy {{ gitlab_runner_docker_pull_policy }}
-        --token {{ gitlab_runner_token }}
-        --locked="{{ gitlab_runner_locked }}"
-        {{ (gitlab_runner_s3_cache_minio_args | join(' ')) if gitlab_runner_s3_cache_minio else '' }}
-      && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
+  ansible.builtin.shell: |
+    gitlab-runner register \
+        --non-interactive \
+        --url {{ gitlab_runner_gitlab_url }} \
+        --executor {{ gitlab_runner_executor }} \
+        --docker-image {{ gitlab_runner_docker_image }} \
+        --docker-pull-policy {{ gitlab_runner_docker_pull_policy }} \
+        --token {{ gitlab_runner_token }} \
+        --locked="{{ gitlab_runner_locked }}" \
+        {{ (gitlab_runner_s3_cache_minio_args | join(' ')) if gitlab_runner_s3_cache_minio else '' }} \
+      && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }} \
       && rm -f ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
-    creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
-
+  creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
 
 - name: Ensure scheduled docker image prune -af
   ansible.builtin.cron:
