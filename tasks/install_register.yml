@@ -2,7 +2,7 @@
 
 - name: Ensure Gitlab Runner repository
   ansible.builtin.script:
-    cmd:     /files/script.deb.sh
+    cmd: "{{ role_path }}/files/script.deb.sh"
 
 - name: Ensure apt cache update
   ansible.builtin.apt:
