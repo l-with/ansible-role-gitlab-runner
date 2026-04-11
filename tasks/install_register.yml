@@ -3,7 +3,8 @@
 - name: Ensure Gitlab Runner repository
   ansible.builtin.script:
     cmd: "{{ role_path }}/files/script.deb.sh"
-
+    creates: /etc/apt/sources.list.d/runner_gitlab-runner.list
+    
 - name: Ensure apt cache update
   ansible.builtin.apt:
     update_cache: yes
