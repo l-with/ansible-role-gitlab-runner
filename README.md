@@ -20,7 +20,7 @@ and part of the role for security reasons.
 | group | variable | default | description |
 | --- | --- | ---| --- |
 | lifecycle | gitlab_runner_unregister | `no` | if the gitlab-runner should be unregistered instead of registered |
-| basic | gitlab_runner_description | | the description for the  runner |
+| basic | gitlab_runner_name | | the name for the  runner |
 | basic | gitlab_runner_executor | `docker` | the runner executor |
 <!-- markdownlint-enable MD033 -->
 
