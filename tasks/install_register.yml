@@ -39,6 +39,7 @@ sudo gitlab-runner register \
       && rm -f ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}
     creates: ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
 
+
 - name: Ensure scheduled docker image prune -af
   ansible.builtin.cron:
     cron_file: "ansible_docker_image_prune_-af"
