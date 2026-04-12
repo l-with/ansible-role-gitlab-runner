@@ -28,6 +28,7 @@
         --token {{ gitlab_runner_token }}
         --limit {{ gitlab_runner_limit }}
         --locked="{{ gitlab_runner_locked }}"
+        {{ "--docker-network-mode host" if gitlab_runner_docker_network_mode_host else '' }}
         {{ (gitlab_runner_s3_cache_minio_args | join(' ')) if gitlab_runner_s3_cache_minio else '' }}
       && touch ansible-shell-done-gitlab-runner-register-{{ gitlab_runner_executor }}
       && rm -f ansible-shell-done-gitlab-runner-unregister-{{ gitlab_runner_executor }}

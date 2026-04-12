@@ -36,6 +36,8 @@ and part of the role for security reasons.
 | runner | gitlab_runner_tag_list | `""` | the tag list for the runner |
 | runner | gitlab_runner_run_untagged | `yes` | if the runner should be registered with `--run_untagged` |
 | runner | gitlab_runner_locked | `"true"` | the parameter for `--locked` |
+| runner | gitlab_runner_limit | `0`| the parameterr for `--limit` |
+| runner | gitlab_runner_docker_network_mode_host | false | if 
 | prune | gitlab_runner_docker_prune_cron | `yes` | if docker prune should be scheduled with cron |
 | prune | gitlab_runner_docker_prune_hour | `5` | the schedule hour for docker prune |
 | prune | gitlab_runner_docker_prune_minute | `30` | the schedule minute for docker prune |
